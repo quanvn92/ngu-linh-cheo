@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngũ Linh Chèo - Chèo Truyền Thống Việt Nam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --dark-brown: #3E2723;
+            --medium-brown: #5D4037;
+            --light-brown: #8D6E63;
+            --cream: #F5F0E8;
+            --deep-red: #8B0000;
+            --bg-red: #6B0F1A;
+            --tan-light: #D2B48C;
+            --tan-dark: #C19A6B;
+            --beige: #E8DCC4;
+        }
+
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            line-height: 1.8;
+            color: var(--dark-brown);
+            background: var(--tan-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--tan-dark);
+            padding: 1.5rem 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--medium-brown);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-svg {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s;
+        }
+
+        .logo-svg:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--dark-brown);
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Cinzel Decorative', 'Lora', serif;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: var(--medium-brown);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: 
+                linear-gradient(rgba(194, 154, 107, 0.3), rgba(194, 154, 107, 0.5)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23C19A6B" width="1920" height="1080"/><path fill="%23D2B48C" opacity="0.3" d="M0,540 Q480,400 960,540 T1920,540 L1920,1080 L0,1080 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--dark-brown);
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80" opacity="0.03" fill="%23D4AF37">🎭</text></svg>') repeat;
+            background-size: 200px;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            animation: fadeInScale 1.5s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-brown);
+            letter-spacing: 8px;
+            font-weight: 300;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: var(--dark-brown);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 2;
+            color: var(--medium-brown);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--primary-gold);
+            color: var(--dark-brown);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.4s;
+            border: 2px solid var(--primary-gold);
+            text-transform: uppercase;
+        }
+
+        .btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--medium-brown), transparent);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--medium-brown);
+            font-style: italic;
+            margin-top: 2rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--beige);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: var(--dark-brown);
+        }
+
+        .about-content p {
+            margin-bottom: 2rem;
+        }
+
+        /* Characters Section */
+        .characters {
+            background: var(--tan-light);
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .character-card {
+            background: linear-gradient(135deg, var(--tan-dark), var(--beige));
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--dark-brown);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--medium-brown);
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(93, 64, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .character-card:hover::before {
+            opacity: 1;
+        }
+
+        .character-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(93, 64, 55, 0.3);
+            border-color: var(--dark-brown);
+        }
+
+        .character-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: rgba(93, 64, 55, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 3px solid var(--medium-brown);
+            position: relative;
+            z-index: 1;
+        }
+
+        .character-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-brown);
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .character-card p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--medium-brown);
+        }
+
+        /* Products Section */
+        .products {
+            background: var(--beige);
+            color: var(--dark-brown);
+        }
+
+        .products .section-title {
+            color: var(--dark-brown);
+        }
+
+        .product-showcase {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .blind-box {
+            background: rgba(194, 154, 107, 0.2);
+            padding: 4rem 3rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--medium-brown);
+            position: relative;
+        }
+
+        .blind-box::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--medium-brown);
+            pointer-events: none;
+        }
+
+        .blind-box h3 {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .blind-box p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            line-height: 2.2;
+            color: var(--dark-brown);
+        }
+
+        .box-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            background: rgba(93, 64, 55, 0.1);
+            padding: 1.5rem;
+            border: 1px solid var(--medium-brown);
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .feature:hover {
+            background: rgba(93, 64, 55, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            margin: 3rem 0;
+            color: var(--dark-brown);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--tan-light);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            background: rgba(194, 154, 107, 0.3);
+            padding: 3rem;
+            border: 1px solid var(--medium-brown);
+            margin: 2rem 0;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            color: var(--dark-brown);
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-brown);
+            color: var(--cream);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 2px solid var(--primary-gold);
+        }
+
+        footer p {
+            margin: 0.8rem 0;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Decorative Elements */
+        .decorative-line {
+            width: 60px;
+            height: 2px;
+            background: var(--medium-brown);
+            margin: 2rem auto;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            section {
+                padding: 4rem 5%;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            nav ul {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .characters-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Background Change Panel */
+        .bg-admin {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark-brown);
+            padding: 1.5rem;
+            border: 2px solid var(--primary-gold);
+            color: var(--cream);
+            z-index: 999;
+            display: none;
+            min-width: 300px;
+        }
+
+        .bg-admin.active {
+            display: block;
+        }
+
+        .bg-admin h4 {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .bg-admin input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            border: 1px solid var(--primary-gold);
+            background: rgba(245, 240, 232, 0.1);
+            color: var(--cream);
+            font-family: inherit;
+        }
+
+        .bg-admin button {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border: 2px solid var(--primary-gold);
+            background: var(--primary-gold);
+            color: var(--dark-brown);
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .bg-admin button:hover {
+            background: transparent;
+            color: var(--primary-gold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer decorative circle -->
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="#5D4037" stroke-width="2"/>
+                    <circle cx="100" cy="100" r="88" fill="none" stroke="#8D6E63" stroke-width="1" stroke-dasharray="5,5"/>
+                    
+                    <!-- Inner circle background -->
+                    <circle cx="100" cy="100" r="80" fill="#E8DCC4" opacity="0.9"/>
+                    
+                    <!-- Traditional Vietnamese motif - 5 petals representing 5 characters -->
+                    <g transform="translate(100,100)">
+                        <!-- Center circle -->
+                        <circle r="15" fill="#5D4037"/>
+                        <circle r="10" fill="#D4AF37"/>
+                        
+                        <!-- 5 petals around center -->
+                        <g id="petal">
+                            <ellipse rx="8" ry="20" transform="translate(0,-35)" fill="#8D6E63" opacity="0.8"/>
+                        </g>
+                        <use href="#petal" transform="rotate(72)"/>
+                        <use href="#petal" transform="rotate(144)"/>
+                        <use href="#petal" transform="rotate(216)"/>
+                        <use href="#petal" transform="rotate(288)"/>
+                    </g>
+                    
+                    <!-- Text on curved path - top -->
+                    <defs>
+                        <path id="circlePath" d="M 100,20 A 80,80 0 0,1 180,100" fill="none"/>
+                        <path id="circlePath2" d="M 20,100 A 80,80 0 0,1 100,20" fill="none"/>
+                    </defs>
+                    
+                    <!-- Top text "NGŨ LINH" -->
+                    <text font-family="Cinzel Decorative, serif" font-size="16" font-weight="bold" fill="#3E2723" letter-spacing="3">
+                        <textPath href="#circlePath2" startOffset="50%" text-anchor="middle">
+                            NGŨ LINH
+                        </textPath>
+                    </text>
+                    
+                    <!-- Bottom text "CHÈO" -->
+                    <text font-family="Cinzel Decorative, serif" font-size="20" font-weight="bold" fill="#3E2723" letter-spacing="8">
+                        <textPath href="#circlePath" startOffset="50%" text-anchor="middle">
+                            CHÈO
+                        </textPath>
+                    </text>
+                    
+                    <!-- Small decorative dots -->
+                    <circle cx="100" cy="15" r="2" fill="#D4AF37"/>
+                    <circle cx="185" cy="100" r="2" fill="#D4AF37"/>
+                    <circle cx="15" cy="100" r="2" fill="#D4AF37"/>
+                </svg>
+                <div class="logo">NGŨ LINH CHÈO</div>
+            </div>
+            <ul>
+                <li><a href="#home">Trang Chủ</a></li>
+                <li><a href="#about">Giới Thiệu</a></li>
+                <li><a href="#characters">Ngũ Linh</a></li>
+                <li><a href="#products">Sản Phẩm</a></li>
+                <li><a href="#contact">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <svg class="hero-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Outer decorative circle -->
+                <circle cx="100" cy="100" r="95" fill="none" stroke="#3E2723" stroke-width="3"/>
+                <circle cx="100" cy="100" r="88" fill="none" stroke="#5D4037" stroke-width="1.5" stroke-dasharray="5,5"/>
+                
+                <!-- Inner circle background -->
+                <circle cx="100" cy="100" r="80" fill="#E8DCC4" opacity="0.95"/>
+                
+                <!-- Traditional Vietnamese motif - 5 petals representing 5 characters -->
+                <g transform="translate(100,100)">
+                    <!-- Center circle -->
+                    <circle r="15" fill="#5D4037"/>
+                    <circle r="10" fill="#D4AF37"/>
+                    
+                    <!-- 5 petals around center -->
+                    <g id="petal-hero">
+                        <ellipse rx="8" ry="20" transform="translate(0,-35)" fill="#8D6E63" opacity="0.8"/>
+                    </g>
+                    <use href="#petal-hero" transform="rotate(72)"/>
+                    <use href="#petal-hero" transform="rotate(144)"/>
+                    <use href="#petal-hero" transform="rotate(216)"/>
+                    <use href="#petal-hero" transform="rotate(288)"/>
+                </g>
+                
+                <!-- Text on curved path - top -->
+                <defs>
+                    <path id="circlePathHero" d="M 100,20 A 80,80 0 0,1 180,100" fill="none"/>
+                    <path id="circlePath2Hero" d="M 20,100 A 80,80 0 0,1 100,20" fill="none"/>
+                </defs>
+                
+                <!-- Top text "NGŨ LINH" -->
+                <text font-family="Cinzel Decorative, serif" font-size="16" font-weight="bold" fill="#3E2723" letter-spacing="3">
+                    <textPath href="#circlePath2Hero" startOffset="50%" text-anchor="middle">
+                        NGŨ LINH
+                    </textPath>
+                </text>
+                
+                <!-- Bottom text "CHÈO" -->
+                <text font-family="Cinzel Decorative, serif" font-size="20" font-weight="bold" fill="#3E2723" letter-spacing="8">
+                    <textPath href="#circlePathHero" startOffset="50%" text-anchor="middle">
+                        CHÈO
+                    </textPath>
+                </text>
+                
+                <!-- Small decorative dots -->
+                <circle cx="100" cy="15" r="2" fill="#D4AF37"/>
+                <circle cx="185" cy="100" r="2" fill="#D4AF37"/>
+                <circle cx="15" cy="100" r="2" fill="#D4AF37"/>
+            </svg>
+            <h1>NGŨ LINH CHÈO</h1>
+            <div class="hero-subtitle">Chèo Truyền Thống Việt Nam</div>
+            <div class="decorative-line"></div>
+            <p>
+                Khám phá vẻ đẹp nghệ thuật sân khấu dân gian qua năm nhân vật biểu tượng<br>
+                Đào • Kép • Lão • Hề • Mụ
+            </p>
+            <a href="#products" class="btn">Khám Phá Bộ Sưu Tập</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+        <div class="section-header">
+            <h2 class="section-title">CHÈO TRUYỀN THỐNG VIỆT NAM</h2>
+            <div class="section-subtitle">Di sản văn hóa nghệ thuật dân tộc</div>
+        </div>
+        <div class="about-content">
+            <p>
+                Chèo là một hình thức nghệ thuật sân khấu dân gian truyền thống của Việt Nam, 
+                có nguồn gốc từ thế kỷ XI. Với sự kết hợp tinh tế giữa ca hát, múa, kịch và âm nhạc, 
+                Chèo đã trở thành một phần không thể thiếu trong đời sống văn hóa tinh thần của người Việt.
+            </p>
+            <div class="decorative-line"></div>
+            <p>
+                Ngũ Linh Chèo tôn vinh năm vai diễn truyền thống - Đào, Kép, Lão, Hề, và Mụ. 
+                Mỗi nhân vật mang một nét đặc trưng riêng, thể hiện triết lý sống, giá trị đạo đức 
+                và tinh thần của dân tộc Việt Nam qua nhiều thế hệ.
+            </p>
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section id="characters" class="characters">
+        <div class="section-header">
+            <h2 class="section-title">NGŨ LINH</h2>
+            <div class="section-subtitle">Năm vai diễn truyền thống trong Chèo</div>
+        </div>
+        <div class="characters-grid">
+            <div class="character-card fade-in">
+                <div class="character-icon">🌸</div>
+                <h3>ĐÀO</h3>
+                <p>Vai nữ chính, tượng trưng cho sự duyên dáng, xinh đẹp và đức hạnh. Đào thể hiện hình ảnh người phụ nữ Việt Nam truyền thống với vẻ đẹp nội tâm và ngoại hình.</p>
+            </div>
+            
+            <div class="character-card fade-in">
+                <div class="character-icon">🎭</div>
+                <h3>KÉP</h3>
+                <p>Vai nam chính, thể hiện sự mạnh mẽ, dũng cảm và lòng trung nghĩa. Kép là biểu tượng của người đàn ông Việt với khí phách anh hùng và tình yêu thương gia đình, đất nước.</p>
+            </div>
+            
+            <div class="character-card fade-in">
+                <div class="character-icon">👴</div>
+                <h3>LÃO</h3>
+                <p>Vai người già, mang đến sự trí tuệ, kinh nghiệm đời và tính hài hước trong cuộc sống. Lão thường là người dẫn dắt câu chuyện với những lời khuyên sâu sắc.</p>
+            </div>
+            
+            <div class="character-card fade-in">
+                <div class="character-icon">🎪</div>
+                <h3>HỀ</h3>
+                <p>Vai hài, tạo nên tiếng cười và sự giải trí cho khán giả. Hề là linh hồn của mỗi vở diễn, mang đến những khoảnh khắc thư giãn và bài học cuộc sống qua tiếng cười.</p>
+            </div>
+            
+            <div class="character-card fade-in">
+                <div class="character-icon">👵</div>
+                <h3>MỤ</h3>
+                <p>Vai bà già, thường mang tính hài hước và phản ánh cuộc sống thường ngày. Mụ thể hiện hình ảnh người phụ nữ lớn tuổi với tính cách đa dạng trong xã hội.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="section-header">
+            <h2 class="section-title">BỘ SƯU TẬP HỘP MÙ</h2>
+            <div class="section-subtitle" style="color: var(--dark-brown);">Ngũ Linh Chèo Blind Box Collection</div>
+        </div>
+        <div class="product-showcase">
+            <div class="blind-box fade-in">
+                <h3>🎁 Ngũ Linh Chèo</h3>
+                <div class="decorative-line"></div>
+                <p>
+                    Mỗi hộp blind box là một cuộc hành trình khám phá thú vị vào thế giới Chèo truyền thống. 
+                    Bạn sẽ nhận được một trong năm nhân vật Đào, Kép, Lão, Hề, hoặc Mụ - được thiết kế tinh xảo, 
+                    mang đậm nét văn hóa nghệ thuật dân gian Việt Nam.
+                </p>
+                
+                <div class="box-features">
+                    <div class="feature">Năm Nhân Vật Độc Đáo</div>
+                    <div class="feature">Chất Lượng Cao Cấp</div>
+                    <div class="feature">Thiết Kế Nghệ Thuật</div>
+                    <div class="feature">Giá Trị Sưu Tầm</div>
+                </div>
+                
+                <p style="margin-top: 3rem; font-style: italic; color: var(--dark-brown);">
+                    Mỗi sản phẩm không chỉ là món đồ chơi sưu tầm mà còn là câu chuyện văn hóa, 
+                    giúp thế hệ trẻ kết nối với di sản nghệ thuật dân tộc.
+                </p>
+                
+                <div class="price-tag">
+                    Giá: Coming Soon
+                </div>
+                
+                <a href="#contact" class="btn">Đặt Hàng Ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <div class="section-header">
+            <h2 class="section-title">LIÊN HỆ</h2>
+            <div class="section-subtitle">Kết nối với chúng tôi</div>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p><strong>Email:</strong> contact@ngulinh-cheo.vn</p>
+                <p><strong>Điện thoại:</strong> (024) XXX-XXXX</p>
+                <p><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</p>
+            </div>
+            <div class="decorative-line"></div>
+            <p style="margin-top: 2rem; font-size: 1.1rem; color: var(--dark-brown);">
+                Theo dõi chúng tôi để cập nhật sản phẩm mới và các chương trình đặc biệt về Chèo truyền thống Việt Nam.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Ngũ Linh Chèo. Tất cả quyền được bảo lưu.</p>
+        <div class="decorative-line" style="background: rgba(93, 64, 55, 0.5);"></div>
+        <p>Gìn giữ và phát huy nghệ thuật Chèo truyền thống Việt Nam</p>
+    </footer>
+
+    <!-- Background Admin Panel -->
+    <div class="bg-admin" id="bgAdmin">
+        <h4>Thay Đổi Background</h4>
+        <input type="text" id="bgInput" placeholder="Nhập URL hình ảnh...">
+        <button onclick="changeBackground()">Áp Dụng</button>
+    </div>
+
+    <script>
+        // Hide hero button on scroll
+        window.addEventListener('scroll', function() {
+            const heroBtn = document.querySelector('.hero .btn');
+            const scrolled = window.scrollY;
+            
+            // Make button completely invisible after scrolling
+            if (scrolled > 50) {
+                heroBtn.style.opacity = '0';
+                heroBtn.style.visibility = 'hidden';
+            } else {
+                heroBtn.style.opacity = '1';
+                heroBtn.style.visibility = 'visible';
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Toggle background admin panel with Alt+B
+        document.addEventListener('keydown', function(e) {
+            if (e.altKey && e.key === 'b') {
+                document.getElementById('bgAdmin').classList.toggle('active');
+            }
+        });
+
+        // Change background function
+        function changeBackground() {
+            const url = document.getElementById('bgInput').value;
+            if (url) {
+                const hero = document.querySelector('.hero');
+                hero.style.background = `linear-gradient(rgba(62, 39, 35, 0.7), rgba(62, 39, 35, 0.85)), url('${url}')`;
+                hero.style.backgroundSize = 'cover';
+                hero.style.backgroundPosition = 'center';
+                hero.style.backgroundAttachment = 'fixed';
+                alert('Background đã được cập nhật!');
+            }
+        }
+
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Parallax effect for hero (removed to fix scrolling issue)
+    </script>
+</body>
+</html>
