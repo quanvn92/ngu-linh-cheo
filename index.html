@@ -20,30 +20,31 @@
             --medium-brown: #5D4037;
             --light-brown: #8D6E63;
             --cream: #F5F0E8;
-            --deep-red: #8B0000;
+            --deep-red: #A63A3A;
             --bg-red: #6B0F1A;
-            --tan-light: #D2B48C;
-            --tan-dark: #C19A6B;
-            --beige: #E8DCC4;
+            --tan-light: #FDF6E3;
+            --tan-dark: #F5E6D3;
+            --beige: #FAF0E6;
+            --border-cream: #E8D5C4;
         }
 
         body {
             font-family: 'Lora', 'Georgia', serif;
             line-height: 1.8;
             color: var(--dark-brown);
-            background: var(--tan-light);
+            background: #FFFBF5;
         }
 
         /* Navigation */
         nav {
-            background: var(--tan-dark);
-            padding: 1.5rem 8%;
+            background: white;
+            padding: 1rem 8%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--medium-brown);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border-cream);
         }
 
         .nav-container {
@@ -61,8 +62,8 @@
         }
 
         .logo-svg {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             transition: transform 0.3s;
         }
 
@@ -71,12 +72,11 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            color: var(--dark-brown);
+            font-size: 1.3rem;
+            color: var(--deep-red);
             font-weight: bold;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            font-family: 'Cinzel Decorative', 'Lora', serif;
+            letter-spacing: 1px;
+            font-family: 'Lora', serif;
         }
 
         nav ul {
@@ -88,23 +88,19 @@
         nav a {
             color: var(--dark-brown);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: color 0.3s;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         nav a:hover {
-            color: var(--medium-brown);
+            color: var(--deep-red);
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: 
-                linear-gradient(rgba(194, 154, 107, 0.3), rgba(194, 154, 107, 0.5)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23C19A6B" width="1920" height="1080"/><path fill="%23D2B48C" opacity="0.3" d="M0,540 Q480,400 960,540 T1920,540 L1920,1080 L0,1080 Z"/></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #FFF5EB 0%, #FFE8D6 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -134,8 +130,8 @@
         }
 
         .hero-logo {
-            width: 200px;
-            height: 200px;
+            width: 160px;
+            height: 224px;
             margin: 0 auto 2rem;
             animation: fadeInScale 1.5s ease-out;
         }
@@ -152,24 +148,24 @@
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
-            color: var(--dark-brown);
-            letter-spacing: 8px;
-            font-weight: 300;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+            color: var(--deep-red);
+            letter-spacing: 6px;
+            font-weight: 400;
+            text-shadow: none;
         }
 
         .hero-subtitle {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             font-style: italic;
             color: var(--dark-brown);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 3rem;
             line-height: 2;
             color: var(--medium-brown);
@@ -214,11 +210,11 @@
         }
 
         .section-title {
-            font-size: 3rem;
-            color: var(--dark-brown);
+            font-size: 2.5rem;
+            color: var(--deep-red);
             margin-bottom: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 4px;
+            font-weight: 400;
+            letter-spacing: 3px;
             position: relative;
             display: inline-block;
         }
@@ -229,9 +225,9 @@
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--medium-brown), transparent);
+            width: 100px;
+            height: 2px;
+            background: var(--deep-red);
         }
 
         .section-subtitle {
@@ -243,7 +239,7 @@
 
         /* About Section */
         .about {
-            background: var(--beige);
+            background: white;
         }
 
         .about-content {
@@ -261,7 +257,7 @@
 
         /* Characters Section */
         .characters {
-            background: var(--tan-light);
+            background: #FFF9F0;
         }
 
         .characters-grid {
@@ -272,14 +268,15 @@
         }
 
         .character-card {
-            background: linear-gradient(135deg, var(--tan-dark), var(--beige));
+            background: white;
             padding: 3rem 2rem;
             text-align: center;
             color: var(--dark-brown);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            border: 1px solid var(--medium-brown);
+            border: 2px solid var(--border-cream);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .character-card::before {
@@ -289,7 +286,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(93, 64, 55, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(166, 58, 58, 0.05) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.5s;
         }
@@ -299,32 +296,32 @@
         }
 
         .character-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 50px rgba(93, 64, 55, 0.3);
-            border-color: var(--dark-brown);
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(166, 58, 58, 0.15);
+            border-color: var(--deep-red);
         }
 
         .character-icon {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto 2rem;
-            background: rgba(93, 64, 55, 0.15);
+            background: rgba(166, 58, 58, 0.08);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            border: 3px solid var(--medium-brown);
+            font-size: 3.5rem;
+            border: 2px solid var(--deep-red);
             position: relative;
             z-index: 1;
         }
 
         .character-card h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            color: var(--dark-brown);
-            letter-spacing: 3px;
-            font-weight: 300;
+            color: var(--deep-red);
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         .character-card p {
@@ -335,12 +332,12 @@
 
         /* Products Section */
         .products {
-            background: var(--beige);
+            background: white;
             color: var(--dark-brown);
         }
 
         .products .section-title {
-            color: var(--dark-brown);
+            color: var(--deep-red);
         }
 
         .product-showcase {
@@ -349,11 +346,11 @@
         }
 
         .blind-box {
-            background: rgba(194, 154, 107, 0.2);
+            background: #FFF9F0;
             padding: 4rem 3rem;
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--medium-brown);
+            border: 2px solid var(--border-cream);
             position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .blind-box::before {
@@ -363,16 +360,17 @@
             left: 20px;
             right: 20px;
             bottom: 20px;
-            border: 1px solid var(--medium-brown);
+            border: 1px solid var(--deep-red);
+            opacity: 0.2;
             pointer-events: none;
         }
 
         .blind-box h3 {
-            font-size: 2.5rem;
-            color: var(--dark-brown);
+            font-size: 2.2rem;
+            color: var(--deep-red);
             margin-bottom: 2rem;
-            letter-spacing: 3px;
-            font-weight: 300;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         .blind-box p {
@@ -390,31 +388,33 @@
         }
 
         .feature {
-            background: rgba(93, 64, 55, 0.1);
+            background: white;
             padding: 1.5rem;
-            border: 1px solid var(--medium-brown);
+            border: 1px solid var(--border-cream);
             text-align: center;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
             transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .feature:hover {
-            background: rgba(93, 64, 55, 0.2);
+            background: #FFF9F0;
             transform: translateY(-5px);
+            border-color: var(--deep-red);
         }
 
         .price-tag {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin: 3rem 0;
-            color: var(--dark-brown);
-            font-weight: 300;
-            letter-spacing: 2px;
+            color: var(--deep-red);
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         /* Contact Section */
         .contact {
-            background: var(--tan-light);
+            background: #FFF9F0;
         }
 
         .contact-content {
@@ -424,10 +424,11 @@
         }
 
         .contact-info {
-            background: rgba(194, 154, 107, 0.3);
+            background: white;
             padding: 3rem;
-            border: 1px solid var(--medium-brown);
+            border: 2px solid var(--border-cream);
             margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .contact-info p {
@@ -457,7 +458,7 @@
         .decorative-line {
             width: 60px;
             height: 2px;
-            background: var(--medium-brown);
+            background: var(--deep-red);
             margin: 2rem auto;
         }
 
@@ -581,56 +582,26 @@
     <nav>
         <div class="nav-container">
             <div class="logo-container">
-                <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Outer decorative circle -->
-                    <circle cx="100" cy="100" r="95" fill="none" stroke="#5D4037" stroke-width="2"/>
-                    <circle cx="100" cy="100" r="88" fill="none" stroke="#8D6E63" stroke-width="1" stroke-dasharray="5,5"/>
+                <!-- Modern Red Logo -->
+                <svg class="logo-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Red background rectangle with rounded corners -->
+                    <rect x="20" y="20" width="160" height="240" rx="15" ry="15" fill="#A63A3A" stroke="#8B2E2E" stroke-width="3"/>
                     
-                    <!-- Inner circle background -->
-                    <circle cx="100" cy="100" r="80" fill="#E8DCC4" opacity="0.9"/>
+                    <!-- Inner decorative border -->
+                    <rect x="30" y="30" width="140" height="220" rx="10" ry="10" fill="none" stroke="#E8D5C4" stroke-width="2"/>
                     
-                    <!-- Traditional Vietnamese motif - 5 petals representing 5 characters -->
-                    <g transform="translate(100,100)">
-                        <!-- Center circle -->
-                        <circle r="15" fill="#5D4037"/>
-                        <circle r="10" fill="#D4AF37"/>
-                        
-                        <!-- 5 petals around center -->
-                        <g id="petal">
-                            <ellipse rx="8" ry="20" transform="translate(0,-35)" fill="#8D6E63" opacity="0.8"/>
-                        </g>
-                        <use href="#petal" transform="rotate(72)"/>
-                        <use href="#petal" transform="rotate(144)"/>
-                        <use href="#petal" transform="rotate(216)"/>
-                        <use href="#petal" transform="rotate(288)"/>
-                    </g>
+                    <!-- Text: Ngũ Linh Chèo -->
+                    <text x="100" y="95" font-family="Lora, serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">Ngũ</text>
+                    <text x="100" y="135" font-family="Lora, serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">Linh</text>
+                    <text x="100" y="185" font-family="Lora, serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="3">Chèo</text>
                     
-                    <!-- Text on curved path - top -->
-                    <defs>
-                        <path id="circlePath" d="M 100,20 A 80,80 0 0,1 180,100" fill="none"/>
-                        <path id="circlePath2" d="M 20,100 A 80,80 0 0,1 100,20" fill="none"/>
-                    </defs>
-                    
-                    <!-- Top text "NGŨ LINH" -->
-                    <text font-family="Cinzel Decorative, serif" font-size="16" font-weight="bold" fill="#3E2723" letter-spacing="3">
-                        <textPath href="#circlePath2" startOffset="50%" text-anchor="middle">
-                            NGŨ LINH
-                        </textPath>
-                    </text>
-                    
-                    <!-- Bottom text "CHÈO" -->
-                    <text font-family="Cinzel Decorative, serif" font-size="20" font-weight="bold" fill="#3E2723" letter-spacing="8">
-                        <textPath href="#circlePath" startOffset="50%" text-anchor="middle">
-                            CHÈO
-                        </textPath>
-                    </text>
-                    
-                    <!-- Small decorative dots -->
-                    <circle cx="100" cy="15" r="2" fill="#D4AF37"/>
-                    <circle cx="185" cy="100" r="2" fill="#D4AF37"/>
-                    <circle cx="15" cy="100" r="2" fill="#D4AF37"/>
+                    <!-- Small decorative elements at corners -->
+                    <circle cx="40" cy="40" r="3" fill="#E8D5C4"/>
+                    <circle cx="160" cy="40" r="3" fill="#E8D5C4"/>
+                    <circle cx="40" cy="240" r="3" fill="#E8D5C4"/>
+                    <circle cx="160" cy="240" r="3" fill="#E8D5C4"/>
                 </svg>
-                <div class="logo">NGŨ LINH CHÈO</div>
+                <div class="logo">Ngũ Linh Chèo</div>
             </div>
             <ul>
                 <li><a href="#home">Trang Chủ</a></li>
@@ -645,54 +616,24 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <svg class="hero-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer decorative circle -->
-                <circle cx="100" cy="100" r="95" fill="none" stroke="#3E2723" stroke-width="3"/>
-                <circle cx="100" cy="100" r="88" fill="none" stroke="#5D4037" stroke-width="1.5" stroke-dasharray="5,5"/>
+            <!-- Modern Red Logo in Hero -->
+            <svg class="hero-logo" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+                <!-- Red background rectangle with rounded corners -->
+                <rect x="20" y="20" width="160" height="240" rx="15" ry="15" fill="#A63A3A" stroke="#8B2E2E" stroke-width="4"/>
                 
-                <!-- Inner circle background -->
-                <circle cx="100" cy="100" r="80" fill="#E8DCC4" opacity="0.95"/>
+                <!-- Inner decorative border -->
+                <rect x="30" y="30" width="140" height="220" rx="10" ry="10" fill="none" stroke="#E8D5C4" stroke-width="3"/>
                 
-                <!-- Traditional Vietnamese motif - 5 petals representing 5 characters -->
-                <g transform="translate(100,100)">
-                    <!-- Center circle -->
-                    <circle r="15" fill="#5D4037"/>
-                    <circle r="10" fill="#D4AF37"/>
-                    
-                    <!-- 5 petals around center -->
-                    <g id="petal-hero">
-                        <ellipse rx="8" ry="20" transform="translate(0,-35)" fill="#8D6E63" opacity="0.8"/>
-                    </g>
-                    <use href="#petal-hero" transform="rotate(72)"/>
-                    <use href="#petal-hero" transform="rotate(144)"/>
-                    <use href="#petal-hero" transform="rotate(216)"/>
-                    <use href="#petal-hero" transform="rotate(288)"/>
-                </g>
+                <!-- Text: Ngũ Linh Chèo -->
+                <text x="100" y="95" font-family="Lora, serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">Ngũ</text>
+                <text x="100" y="135" font-family="Lora, serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">Linh</text>
+                <text x="100" y="185" font-family="Lora, serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="3">Chèo</text>
                 
-                <!-- Text on curved path - top -->
-                <defs>
-                    <path id="circlePathHero" d="M 100,20 A 80,80 0 0,1 180,100" fill="none"/>
-                    <path id="circlePath2Hero" d="M 20,100 A 80,80 0 0,1 100,20" fill="none"/>
-                </defs>
-                
-                <!-- Top text "NGŨ LINH" -->
-                <text font-family="Cinzel Decorative, serif" font-size="16" font-weight="bold" fill="#3E2723" letter-spacing="3">
-                    <textPath href="#circlePath2Hero" startOffset="50%" text-anchor="middle">
-                        NGŨ LINH
-                    </textPath>
-                </text>
-                
-                <!-- Bottom text "CHÈO" -->
-                <text font-family="Cinzel Decorative, serif" font-size="20" font-weight="bold" fill="#3E2723" letter-spacing="8">
-                    <textPath href="#circlePathHero" startOffset="50%" text-anchor="middle">
-                        CHÈO
-                    </textPath>
-                </text>
-                
-                <!-- Small decorative dots -->
-                <circle cx="100" cy="15" r="2" fill="#D4AF37"/>
-                <circle cx="185" cy="100" r="2" fill="#D4AF37"/>
-                <circle cx="15" cy="100" r="2" fill="#D4AF37"/>
+                <!-- Small decorative elements at corners -->
+                <circle cx="40" cy="40" r="3" fill="#E8D5C4"/>
+                <circle cx="160" cy="40" r="3" fill="#E8D5C4"/>
+                <circle cx="40" cy="240" r="3" fill="#E8D5C4"/>
+                <circle cx="160" cy="240" r="3" fill="#E8D5C4"/>
             </svg>
             <h1>NGŨ LINH CHÈO</h1>
             <div class="hero-subtitle">Chèo Truyền Thống Việt Nam</div>
@@ -824,7 +765,7 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Ngũ Linh Chèo. Tất cả quyền được bảo lưu.</p>
-        <div class="decorative-line" style="background: rgba(93, 64, 55, 0.5);"></div>
+        <div class="decorative-line" style="background: var(--deep-red);"></div>
         <p>Gìn giữ và phát huy nghệ thuật Chèo truyền thống Việt Nam</p>
     </footer>
 
