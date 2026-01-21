@@ -747,13 +747,13 @@
     </div>
 
     <script>
-        // Hide hero button on scroll
+        // Hide hero button on scroll - stays visible longer
         window.addEventListener('scroll', function() {
             const heroBtn = document.querySelector('.hero .btn');
             const scrolled = window.scrollY;
             
-            // Make button completely invisible after scrolling
-            if (scrolled > 50) {
+            // Make button invisible after scrolling 400px (was 50px)
+            if (scrolled > 400) {
                 heroBtn.style.opacity = '0';
                 heroBtn.style.visibility = 'hidden';
             } else {
