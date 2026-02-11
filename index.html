@@ -421,6 +421,87 @@
             background: #FFF9F0;
         }
 
+        /* News/Facebook Section */
+        .news {
+            background: white;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border: 2px solid var(--border-cream);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(166, 58, 58, 0.15);
+            border-color: var(--deep-red);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #FFF9F0;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--deep-red);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: var(--medium-brown);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .news-link {
+            display: inline-block;
+            color: var(--deep-red);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .news-link:hover {
+            border-bottom-color: var(--deep-red);
+        }
+
+        .fb-embed-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: #FFF9F0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-cream);
+        }
+
         .contact-content {
             max-width: 800px;
             margin: 0 auto;
@@ -595,6 +676,7 @@
                 <li><a href="#about">Giới Thiệu</a></li>
                 <li><a href="#characters">Ngũ Linh</a></li>
                 <li><a href="#products">Sản Phẩm</a></li>
+                <li><a href="#news">Tin Tức</a></li>
                 <li><a href="#contact">Liên Hệ</a></li>
             </ul>
         </div>
@@ -713,6 +795,68 @@
         </div>
     </section>
 
+    <!-- News/Facebook Section -->
+    <section id="news" class="news fade-in">
+        <div class="section-header">
+            <h2 class="section-title">TIN TỨC & SỰ KIỆN</h2>
+            <div class="section-subtitle">Cập nhật mới nhất từ Ngũ Linh Chèo</div>
+        </div>
+
+        <!-- Featured Facebook Posts -->
+        <div class="news-grid">
+            <!-- Post 1 -->
+            <div class="news-card fade-in">
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3D122098965015237213%26id%3D61587116406078%26substory_index%3D829276936837712&show_text=true&width=500" 
+                        width="100%" 
+                        height="729" 
+                        style="border:none;overflow:hidden;border-radius:8px;" 
+                        scrolling="no" 
+                        frameborder="0" 
+                        allowfullscreen="true" 
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="news-card fade-in">
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid03735Q1wCfV74B1wUuu4KDwd5uZPqZ1hgy6Ls6HXkYb4J8QcGvrZgGPB6JebXVKZLsl%26id%3D61587116406078&show_text=true&width=500" 
+                        width="100%" 
+                        height="712" 
+                        style="border:none;overflow:hidden;border-radius:8px;" 
+                        scrolling="no" 
+                        frameborder="0" 
+                        allowfullscreen="true" 
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="news-card fade-in">
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid032ywtqbFthqsEs9Z7oWowgBZphNeD5x117muJdDtypLHNbPxpqCv718xPA195zKPjl%26id%3D61587116406078&show_text=true&width=500" 
+                        width="100%" 
+                        height="250" 
+                        style="border:none;overflow:hidden;border-radius:8px;" 
+                        scrolling="no" 
+                        frameborder="0" 
+                        allowfullscreen="true" 
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <div class="decorative-line"></div>
+            <h3 style="color: var(--deep-red); margin: 2rem 0 1.5rem; font-size: 1.5rem;">Theo Dõi Chúng Tôi Trên Facebook</h3>
+            <a href="https://www.facebook.com/profile.php?id=61587116406078" 
+               target="_blank" 
+               class="btn"
+               style="display: inline-block; margin-top: 1rem;">
+                Xem Tất Cả Bài Viết
+            </a>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact fade-in">
         <div class="section-header">
@@ -738,6 +882,13 @@
         <div class="decorative-line" style="background: var(--deep-red);"></div>
         <p>Gìn giữ và phát huy nghệ thuật Chèo truyền thống Việt Nam</p>
     </footer>
+
+    <!-- Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" 
+            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0" 
+            nonce="RandomNonce">
+    </script>
 
     <!-- Background Admin Panel -->
     <div class="bg-admin" id="bgAdmin">
