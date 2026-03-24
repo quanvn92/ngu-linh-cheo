@@ -141,14 +141,8 @@
         }
 
         @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .hero h1 {
@@ -157,7 +151,6 @@
             color: var(--deep-red);
             letter-spacing: 6px;
             font-weight: 400;
-            text-shadow: none;
         }
 
         .hero-subtitle {
@@ -187,11 +180,6 @@
             transition: all 0.4s;
             border: 2px solid var(--primary-gold);
             text-transform: uppercase;
-        }
-
-        .btn.hidden {
-            opacity: 0;
-            pointer-events: none;
         }
 
         .btn:hover {
@@ -242,9 +230,7 @@
         }
 
         /* About Section */
-        .about {
-            background: white;
-        }
+        .about { background: white; }
 
         .about-content {
             max-width: 900px;
@@ -255,84 +241,265 @@
             color: var(--dark-brown);
         }
 
-        .about-content p {
-            margin-bottom: 2rem;
-        }
+        .about-content p { margin-bottom: 2rem; }
 
-        /* Characters Section */
-        .characters {
-            background: #FFF9F0;
-        }
+        /* =============================================
+           CHARACTERS SECTION — UPDATED WITH EXPANDABLE CARDS
+           ============================================= */
+        .characters { background: #FFF9F0; }
 
+        /* Summary cards row (always visible) */
         .characters-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
             margin-top: 3rem;
         }
 
         .character-card {
             background: white;
-            padding: 3rem 2rem;
+            padding: 2rem 1.2rem;
             text-align: center;
             color: var(--dark-brown);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             border: 2px solid var(--border-cream);
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            cursor: pointer;
         }
 
         .character-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(166, 58, 58, 0.05) 0%, transparent 70%);
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(166,58,58,0.05) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.5s;
         }
 
-        .character-card:hover::before {
-            opacity: 1;
-        }
+        .character-card:hover::before { opacity: 1; }
 
-        .character-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(166, 58, 58, 0.15);
+        .character-card:hover,
+        .character-card.active {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(166, 58, 58, 0.18);
             border-color: var(--deep-red);
         }
 
+        .character-card.active {
+            border-bottom-color: transparent;
+            transform: translateY(-8px);
+            border-radius: 4px 4px 0 0;
+        }
+
         .character-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 2rem;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
             background: rgba(166, 58, 58, 0.08);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             border: 2px solid var(--deep-red);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .character-card:hover .character-icon,
+        .character-card.active .character-icon {
+            background: rgba(166, 58, 58, 0.15);
+            transform: scale(1.1);
+        }
+
+        .character-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--deep-red);
+            letter-spacing: 2px;
+            font-weight: 600;
             position: relative;
             z-index: 1;
         }
 
-        .character-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--deep-red);
-            letter-spacing: 2px;
-            font-weight: 600;
+        .character-card .card-teaser {
+            font-size: 0.9rem;
+            color: var(--light-brown);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
         }
 
-        .character-card p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            color: var(--medium-brown);
+        .expand-hint {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--deep-red);
+            letter-spacing: 1px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: opacity 0.3s;
         }
+
+        .character-card:hover .expand-hint { opacity: 1; }
+
+        .expand-arrow {
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        .character-card.active .expand-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Detail panels */
+        .character-detail-panels {
+            margin-top: 0;
+        }
+
+        .character-detail {
+            display: none;
+            background: white;
+            border: 2px solid var(--deep-red);
+            border-top: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            animation: slideDown 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .character-detail.visible {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-image-wrap {
+            flex: 0 0 340px;
+            max-width: 340px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .detail-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .character-detail:hover .detail-image-wrap img {
+            transform: scale(1.04);
+        }
+
+        .detail-image-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 40px; height: 100%;
+            background: linear-gradient(to right, transparent, white);
+        }
+
+        .detail-body {
+            flex: 1;
+            padding: 3rem 3.5rem;
+        }
+
+        .detail-tag {
+            display: inline-block;
+            background: var(--deep-red);
+            color: white;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            padding: 0.3rem 1rem;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .detail-body h3 {
+            font-size: 2.4rem;
+            color: var(--deep-red);
+            letter-spacing: 4px;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+        }
+
+        .detail-body .detail-subtitle {
+            font-size: 1rem;
+            color: var(--light-brown);
+            font-style: italic;
+            margin-bottom: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .detail-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--primary-gold);
+            margin-bottom: 1.8rem;
+        }
+
+        .detail-body p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--medium-brown);
+            margin-bottom: 1.2rem;
+        }
+
+        .detail-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.8rem;
+        }
+
+        .trait-tag {
+            background: #FFF9F0;
+            border: 1px solid var(--border-cream);
+            color: var(--medium-brown);
+            font-size: 0.85rem;
+            padding: 0.35rem 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .trait-tag:hover {
+            background: var(--deep-red);
+            color: white;
+            border-color: var(--deep-red);
+        }
+
+        .close-detail {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            color: var(--deep-red);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+        }
+
+        .close-detail:hover { opacity: 0.7; }
 
         /* Products Section */
         .products {
@@ -340,14 +507,9 @@
             color: var(--dark-brown);
         }
 
-        .products .section-title {
-            color: var(--deep-red);
-        }
+        .products .section-title { color: var(--deep-red); }
 
-        .product-showcase {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        .product-showcase { max-width: 1100px; margin: 0 auto; }
 
         .blind-box {
             background: #FFF9F0;
@@ -360,10 +522,7 @@
         .blind-box::before {
             content: '';
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
             border: 1px solid var(--deep-red);
             opacity: 0.2;
             pointer-events: none;
@@ -416,15 +575,8 @@
             letter-spacing: 1px;
         }
 
-        /* Contact Section */
-        .contact {
-            background: #FFF9F0;
-        }
-
-        /* News/Facebook Section */
-        .news {
-            background: white;
-        }
+        /* News Section */
+        .news { background: white; }
 
         .news-grid {
             display: grid;
@@ -448,59 +600,8 @@
             border-color: var(--deep-red);
         }
 
-        .news-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            background: #FFF9F0;
-        }
-
-        .news-content {
-            padding: 1.5rem;
-        }
-
-        .news-date {
-            color: var(--deep-red);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .news-title {
-            font-size: 1.3rem;
-            color: var(--dark-brown);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .news-excerpt {
-            color: var(--medium-brown);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .news-link {
-            display: inline-block;
-            color: var(--deep-red);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border-bottom: 2px solid transparent;
-        }
-
-        .news-link:hover {
-            border-bottom-color: var(--deep-red);
-        }
-
-        .fb-embed-container {
-            max-width: 500px;
-            margin: 2rem auto;
-            background: #FFF9F0;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 2px solid var(--border-cream);
-        }
+        /* Contact Section */
+        .contact { background: #FFF9F0; }
 
         .contact-content {
             max-width: 800px;
@@ -539,7 +640,7 @@
             opacity: 0.9;
         }
 
-        /* Decorative Elements */
+        /* Decorative */
         .decorative-line {
             width: 60px;
             height: 2px;
@@ -560,114 +661,62 @@
         }
 
         /* Responsive */
+        @media (max-width: 1100px) {
+            .characters-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 1024px) {
-            section {
-                padding: 4rem 5%;
-            }
-            
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            nav ul {
-                gap: 2rem;
-            }
+            section { padding: 4rem 5%; }
+            .hero h1 { font-size: 3.5rem; }
+            nav ul { gap: 2rem; }
+
+            .detail-image-wrap { flex: 0 0 260px; max-width: 260px; }
+            .detail-body { padding: 2rem 2.5rem; }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-                letter-spacing: 4px;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-            
-            nav {
-                padding: 1rem 5%;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
+            .hero h1 { font-size: 2.5rem; letter-spacing: 4px; }
+            .hero-subtitle { font-size: 1.3rem; }
+
+            nav { padding: 1rem 5%; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+            .section-title { font-size: 2rem; }
+
             .characters-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+                grid-template-columns: repeat(2, 1fr);
             }
+
+            .character-detail.visible {
+                flex-direction: column;
+            }
+
+            .detail-image-wrap {
+                flex: none;
+                max-width: 100%;
+                height: 280px;
+            }
+
+            .detail-image-wrap::after { display: none; }
+
+            .detail-body { padding: 1.8rem; }
+            .detail-body h3 { font-size: 1.8rem; }
         }
 
-        /* Background Change Panel */
-        .bg-admin {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--dark-brown);
-            padding: 1.5rem;
-            border: 2px solid var(--primary-gold);
-            color: var(--cream);
-            z-index: 999;
-            display: none;
-            min-width: 300px;
-        }
-
-        .bg-admin.active {
-            display: block;
-        }
-
-        .bg-admin h4 {
-            color: var(--primary-gold);
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .bg-admin input {
-            width: 100%;
-            padding: 0.8rem;
-            margin-top: 0.5rem;
-            border: 1px solid var(--primary-gold);
-            background: rgba(245, 240, 232, 0.1);
-            color: var(--cream);
-            font-family: inherit;
-        }
-
-        .bg-admin button {
-            width: 100%;
-            margin-top: 1rem;
-            padding: 0.8rem;
-            border: 2px solid var(--primary-gold);
-            background: var(--primary-gold);
-            color: var(--dark-brown);
-            font-weight: bold;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-
-        .bg-admin button:hover {
-            background: transparent;
-            color: var(--primary-gold);
+        @media (max-width: 500px) {
+            .characters-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo-container">
-                <!-- Your High-Quality Logo -->
                 <img src="https://i.postimg.cc/qqWHPR69/NLC-logo2.png" alt="Ngũ Linh Chèo Logo" class="logo-svg">
                 <div class="logo">Ngũ Linh Chèo</div>
             </div>
@@ -685,7 +734,6 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <!-- Your High-Quality Logo in Hero Section -->
             <img src="https://i.postimg.cc/qqWHPR69/NLC-logo2.png" alt="Ngũ Linh Chèo" class="hero-logo">
             <h1>NGŨ LINH CHÈO</h1>
             <div class="hero-subtitle">Chèo Truyền Thống Việt Nam</div>
@@ -719,43 +767,254 @@
         </div>
     </section>
 
-    <!-- Characters Section -->
+    <!-- =============================================
+         CHARACTERS SECTION — EXPANDABLE CARDS
+         ============================================= -->
     <section id="characters" class="characters">
         <div class="section-header">
             <h2 class="section-title">NGŨ LINH</h2>
-            <div class="section-subtitle">Năm vai diễn truyền thống trong Chèo</div>
+            <div class="section-subtitle">Năm vai diễn truyền thống trong Chèo — Nhấn để khám phá</div>
         </div>
+
+        <!-- Summary cards (always visible, clickable) -->
         <div class="characters-grid">
-            <div class="character-card fade-in">
+
+            <div class="character-card fade-in" data-target="detail-dao">
                 <div class="character-icon">🌸</div>
                 <h3>ĐÀO</h3>
-                <p>Vai nữ chính, tượng trưng cho sự duyên dáng, xinh đẹp và đức hạnh. Đào thể hiện hình ảnh người phụ nữ Việt Nam truyền thống với vẻ đẹp nội tâm và ngoại hình.</p>
+                <p class="card-teaser">Vai nữ chính · Duyên dáng & đức hạnh</p>
+                <div class="expand-hint">
+                    Xem thêm <span class="expand-arrow">▼</span>
+                </div>
             </div>
-            
-            <div class="character-card fade-in">
+
+            <div class="character-card fade-in" data-target="detail-kep">
                 <div class="character-icon">🎭</div>
                 <h3>KÉP</h3>
-                <p>Vai nam chính, thể hiện sự mạnh mẽ, dũng cảm và lòng trung nghĩa. Kép là biểu tượng của người đàn ông Việt với khí phách anh hùng và tình yêu thương gia đình, đất nước.</p>
+                <p class="card-teaser">Vai nam chính · Dũng cảm & trung nghĩa</p>
+                <div class="expand-hint">
+                    Xem thêm <span class="expand-arrow">▼</span>
+                </div>
             </div>
-            
-            <div class="character-card fade-in">
+
+            <div class="character-card fade-in" data-target="detail-lao">
                 <div class="character-icon">👴</div>
                 <h3>LÃO</h3>
-                <p>Vai người già, mang đến sự trí tuệ, kinh nghiệm đời và tính hài hước trong cuộc sống. Lão thường là người dẫn dắt câu chuyện với những lời khuyên sâu sắc.</p>
+                <p class="card-teaser">Vai người cao tuổi · Trí tuệ & hài hước</p>
+                <div class="expand-hint">
+                    Xem thêm <span class="expand-arrow">▼</span>
+                </div>
             </div>
-            
-            <div class="character-card fade-in">
+
+            <div class="character-card fade-in" data-target="detail-he">
                 <div class="character-icon">🎪</div>
                 <h3>HỀ</h3>
-                <p>Vai hài, tạo nên tiếng cười và sự giải trí cho khán giả. Hề là linh hồn của mỗi vở diễn, mang đến những khoảnh khắc thư giãn và bài học cuộc sống qua tiếng cười.</p>
+                <p class="card-teaser">Vai hài · Tiếng cười & bài học đời</p>
+                <div class="expand-hint">
+                    Xem thêm <span class="expand-arrow">▼</span>
+                </div>
             </div>
-            
-            <div class="character-card fade-in">
+
+            <div class="character-card fade-in" data-target="detail-mu">
                 <div class="character-icon">👵</div>
                 <h3>MỤ</h3>
-                <p>Vai bà già, thường mang tính hài hước và phản ánh cuộc sống thường ngày. Mụ thể hiện hình ảnh người phụ nữ lớn tuổi với tính cách đa dạng trong xã hội.</p>
+                <p class="card-teaser">Vai bà già · Hài hước & nhân sinh</p>
+                <div class="expand-hint">
+                    Xem thêm <span class="expand-arrow">▼</span>
+                </div>
             </div>
-        </div>
+
+        </div><!-- /.characters-grid -->
+
+        <!-- Detail panels — each sits below the grid and reveals on click -->
+        <div class="character-detail-panels">
+
+            <!-- ĐÀO -->
+            <div class="character-detail" id="detail-dao">
+                <div class="detail-image-wrap">
+                    <img src="images/dao.jpg" alt="Nhân vật Đào trong Chèo truyền thống">
+                </div>
+                <div class="detail-body">
+                    <span class="detail-tag">Vai Nữ Chính</span>
+                    <h3>ĐÀO</h3>
+                    <p class="detail-subtitle">Biểu tượng của người phụ nữ Việt trong sân khấu Chèo</p>
+                    <div class="detail-divider"></div>
+                    <p>
+                        Đào là vai nữ chính trong nghệ thuật Chèo — linh hồn của mỗi vở diễn. Nhân vật này thể hiện 
+                        vẻ đẹp toàn diện của người phụ nữ Việt Nam: vừa duyên dáng, thướt tha trong từng bước đi, 
+                        vừa kiên cường, nhân hậu trong cách đối nhân xử thế.
+                    </p>
+                    <p>
+                        Qua từng điệu múa, làn điệu Chèo và lời thoại, Đào mang đến những câu chuyện về tình yêu, 
+                        lòng hiếu thảo và đức hy sinh. Người xem qua các thế hệ tìm thấy ở nhân vật này hình bóng 
+                        của người mẹ, người vợ, người con gái Việt — bền bỉ và cao đẹp giữa mọi thăng trầm cuộc sống.
+                    </p>
+                    <p>
+                        Trang phục của Đào thường là áo dài truyền thống tông đỏ hoặc hồng thắm, đầu đội mấn, 
+                        tay cầm quạt — mỗi chi tiết đều chứa đựng mã biểu tượng văn hóa sâu sắc của người Việt.
+                    </p>
+                    <div class="detail-traits">
+                        <span class="trait-tag">Duyên dáng</span>
+                        <span class="trait-tag">Nhân hậu</span>
+                        <span class="trait-tag">Kiên cường</span>
+                        <span class="trait-tag">Hiếu thảo</span>
+                        <span class="trait-tag">Hy sinh</span>
+                        <span class="trait-tag">Vai nữ chính</span>
+                    </div>
+                    <button class="close-detail" data-target="detail-dao">✕ Thu gọn</button>
+                </div>
+            </div>
+
+            <!-- KÉP -->
+            <div class="character-detail" id="detail-kep">
+                <div class="detail-image-wrap">
+                    <img src="images/kep.jpg" alt="Nhân vật Kép trong Chèo truyền thống">
+                </div>
+                <div class="detail-body">
+                    <span class="detail-tag">Vai Nam Chính</span>
+                    <h3>KÉP</h3>
+                    <p class="detail-subtitle">Khí phách anh hùng và lòng trung nghĩa</p>
+                    <div class="detail-divider"></div>
+                    <p>
+                        Kép là vai nam chính, đại diện cho lý tưởng của người đàn ông trong xã hội Việt truyền thống. 
+                        Nhân vật này mang trong mình sự kết hợp giữa dũng khí của bậc võ tướng và 
+                        tâm hồn của kẻ sĩ — vừa biết cầm gươm giữ nước, vừa biết cầm bút xướng văn.
+                    </p>
+                    <p>
+                        Kép thường đứng trước những thử thách lớn về danh dự, tình yêu và bổn phận với gia đình 
+                        lẫn đất nước. Qua những tình huống đó, vở diễn truyền tải quan niệm về 
+                        trung — hiếu — nghĩa — tín, bốn đức tính cốt lõi trong triết lý sống của người Việt.
+                    </p>
+                    <p>
+                        Trang phục Kép thường là áo gấm, mão cánh chuồn, gươm bội — toát lên khí thế 
+                        uy nghi nhưng không mất đi sự gần gũi, ấm áp của tình người.
+                    </p>
+                    <div class="detail-traits">
+                        <span class="trait-tag">Dũng cảm</span>
+                        <span class="trait-tag">Trung nghĩa</span>
+                        <span class="trait-tag">Hiếu đạo</span>
+                        <span class="trait-tag">Khí phách</span>
+                        <span class="trait-tag">Tài hoa</span>
+                        <span class="trait-tag">Vai nam chính</span>
+                    </div>
+                    <button class="close-detail" data-target="detail-kep">✕ Thu gọn</button>
+                </div>
+            </div>
+
+            <!-- LÃO -->
+            <div class="character-detail" id="detail-lao">
+                <div class="detail-image-wrap">
+                    <img src="images/lao.jpg" alt="Nhân vật Lão trong Chèo truyền thống">
+                </div>
+                <div class="detail-body">
+                    <span class="detail-tag">Vai Người Cao Tuổi</span>
+                    <h3>LÃO</h3>
+                    <p class="detail-subtitle">Trí tuệ trải đời và sự hài hước sâu sắc</p>
+                    <div class="detail-divider"></div>
+                    <p>
+                        Lão là vai người cao tuổi — nhân vật mang trên vai cả một kho tàng kinh nghiệm sống. 
+                        Trong sân khấu Chèo, Lão không chỉ là người già mà còn là chiếc gương phản chiếu 
+                        bề dày văn hóa và triết lý nhân sinh của cộng đồng.
+                    </p>
+                    <p>
+                        Nét độc đáo của Lão nằm ở sự kết hợp tự nhiên giữa hài hước và thâm trầm. 
+                        Những lời nói tưởng như đùa vui lại ẩn chứa bài học sâu sắc; những câu chuyện 
+                        kể lại thuở xưa lại là lời nhắc nhở thế hệ trẻ về cội nguồn và đạo lý làm người.
+                    </p>
+                    <p>
+                        Diễn viên thủ vai Lão thường dùng giọng điệu khàn khàn, bước đi khom lưng 
+                        và ánh mắt tinh tường — kỹ thuật diễn xuất đòi hỏi nhiều năm tu luyện bởi sự 
+                        tinh tế ẩn sau vẻ ngoài đơn giản của nhân vật.
+                    </p>
+                    <div class="detail-traits">
+                        <span class="trait-tag">Trí tuệ</span>
+                        <span class="trait-tag">Hài hước</span>
+                        <span class="trait-tag">Thâm trầm</span>
+                        <span class="trait-tag">Kinh nghiệm</span>
+                        <span class="trait-tag">Dẫn dắt câu chuyện</span>
+                        <span class="trait-tag">Vai người cao tuổi</span>
+                    </div>
+                    <button class="close-detail" data-target="detail-lao">✕ Thu gọn</button>
+                </div>
+            </div>
+
+            <!-- HỀ -->
+            <div class="character-detail" id="detail-he">
+                <div class="detail-image-wrap">
+                    <img src="images/he.jpg" alt="Nhân vật Hề trong Chèo truyền thống">
+                </div>
+                <div class="detail-body">
+                    <span class="detail-tag">Vai Hài</span>
+                    <h3>HỀ</h3>
+                    <p class="detail-subtitle">Tiếng cười nhân ái và bài học cuộc đời</p>
+                    <div class="detail-divider"></div>
+                    <p>
+                        Hề là nhân vật đặc sắc bậc nhất trong Chèo — linh hồn của tiếng cười, 
+                        nhưng không bao giờ là tiếng cười rỗng tuếch. Mỗi trò đùa, mỗi màn hài đều 
+                        ẩn chứa một quan sát tinh tế về cuộc sống, về thói đời và bản chất con người.
+                    </p>
+                    <p>
+                        Điều làm Hề trở nên bất tử trong nghệ thuật Chèo chính là sự tự do. Nhân vật này 
+                        có thể nói những điều mà các vai khác không dám nói, chạm đến những sự thật 
+                        mà xã hội thường né tránh — tất cả được bọc trong lớp vỏ hài hước nhẹ nhàng, 
+                        khiến khán giả cười mà ngẫm nghĩ.
+                    </p>
+                    <p>
+                        Mặt nạ kẻ mắt và trang phục nhiều màu sắc của Hề không chỉ là trang phục sân khấu — 
+                        đó là biểu tượng cho sự đa chiều của cuộc sống: vui đấy nhưng cũng buồn đấy, 
+                        hài đấy nhưng cũng thật đấy.
+                    </p>
+                    <div class="detail-traits">
+                        <span class="trait-tag">Hài hước</span>
+                        <span class="trait-tag">Thông minh</span>
+                        <span class="trait-tag">Tự do</span>
+                        <span class="trait-tag">Châm biếm nhẹ</span>
+                        <span class="trait-tag">Nhân ái</span>
+                        <span class="trait-tag">Vai hài</span>
+                    </div>
+                    <button class="close-detail" data-target="detail-he">✕ Thu gọn</button>
+                </div>
+            </div>
+
+            <!-- MỤ -->
+            <div class="character-detail" id="detail-mu">
+                <div class="detail-image-wrap">
+                    <img src="images/mu.jpg" alt="Nhân vật Mụ trong Chèo truyền thống">
+                </div>
+                <div class="detail-body">
+                    <span class="detail-tag">Vai Bà Già</span>
+                    <h3>MỤ</h3>
+                    <p class="detail-subtitle">Hài hước dân gian và bức tranh xã hội</p>
+                    <div class="detail-divider"></div>
+                    <p>
+                        Mụ là vai bà già trong sân khấu Chèo — một nhân vật mang sắc thái phong phú và 
+                        đa chiều. Tùy theo vở diễn, Mụ có thể là người bà hiền từ, bà mối lanh lợi, 
+                        hay người đàn bà đanh đá của làng xã — mỗi kiểu lại phản ánh một góc cạnh 
+                        của đời sống cộng đồng nông thôn Bắc Bộ xưa.
+                    </p>
+                    <p>
+                        Nét duyên của Mụ nằm ở giọng nói và cử chỉ cường điệu hóa một cách tinh tế. 
+                        Diễn viên Mụ phải nắm vững nghệ thuật phóng đại đúng mức — đủ để gây cười, 
+                        nhưng vẫn giữ được sự chân thực của nhân vật và không sa vào thô kệch.
+                    </p>
+                    <p>
+                        Qua những tình huống hài hước, Mụ thường là nhân vật phơi bày những thói tật 
+                        thường ngày của xã hội — sự tham lam, hay ghen tuông, thích chuyện nhà người — 
+                        bằng chất hài nhẹ nhàng nhưng sâu cay.
+                    </p>
+                    <div class="detail-traits">
+                        <span class="trait-tag">Hài hước</span>
+                        <span class="trait-tag">Cường điệu</span>
+                        <span class="trait-tag">Đa sắc thái</span>
+                        <span class="trait-tag">Phản chiếu xã hội</span>
+                        <span class="trait-tag">Chân thực</span>
+                        <span class="trait-tag">Vai bà già</span>
+                    </div>
+                    <button class="close-detail" data-target="detail-mu">✕ Thu gọn</button>
+                </div>
+            </div>
+
+        </div><!-- /.character-detail-panels -->
     </section>
 
     <!-- Products Section -->
@@ -773,85 +1032,58 @@
                     Bạn sẽ nhận được một trong năm nhân vật Đào, Kép, Lão, Hề, hoặc Mụ - được thiết kế tinh xảo, 
                     mang đậm nét văn hóa nghệ thuật dân gian Việt Nam.
                 </p>
-                
                 <div class="box-features">
                     <div class="feature">Năm Nhân Vật Độc Đáo</div>
                     <div class="feature">Chất Lượng Cao Cấp</div>
                     <div class="feature">Thiết Kế Nghệ Thuật</div>
                     <div class="feature">Giá Trị Sưu Tầm</div>
                 </div>
-                
                 <p style="margin-top: 3rem; font-style: italic; color: var(--dark-brown);">
                     Mỗi sản phẩm không chỉ là món đồ chơi sưu tầm mà còn là câu chuyện văn hóa, 
                     giúp thế hệ trẻ kết nối với di sản nghệ thuật dân tộc.
                 </p>
-                
-                <div class="price-tag">
-                    Giá: Coming Soon
-                </div>
-                
+                <div class="price-tag">Giá: Coming Soon</div>
                 <a href="#contact" class="btn">Đặt Hàng Ngay</a>
             </div>
         </div>
     </section>
 
-    <!-- News/Facebook Section -->
+    <!-- News Section -->
     <section id="news" class="news fade-in">
         <div class="section-header">
             <h2 class="section-title">TIN TỨC & SỰ KIỆN</h2>
             <div class="section-subtitle">Cập nhật mới nhất từ Ngũ Linh Chèo</div>
         </div>
-
-        <!-- Featured Facebook Posts -->
         <div class="news-grid">
-            <!-- Post 1 -->
             <div class="news-card fade-in">
                 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3D122098965015237213%26id%3D61587116406078%26substory_index%3D829276936837712&show_text=true&width=500" 
-                        width="100%" 
-                        height="729" 
+                        width="100%" height="729" 
                         style="border:none;overflow:hidden;border-radius:8px;" 
-                        scrolling="no" 
-                        frameborder="0" 
-                        allowfullscreen="true" 
+                        scrolling="no" frameborder="0" allowfullscreen="true" 
                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                 </iframe>
             </div>
-
-            <!-- Post 2 -->
             <div class="news-card fade-in">
                 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid03735Q1wCfV74B1wUuu4KDwd5uZPqZ1hgy6Ls6HXkYb4J8QcGvrZgGPB6JebXVKZLsl%26id%3D61587116406078&show_text=true&width=500" 
-                        width="100%" 
-                        height="712" 
+                        width="100%" height="712" 
                         style="border:none;overflow:hidden;border-radius:8px;" 
-                        scrolling="no" 
-                        frameborder="0" 
-                        allowfullscreen="true" 
+                        scrolling="no" frameborder="0" allowfullscreen="true" 
                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                 </iframe>
             </div>
-
-            <!-- Post 3 -->
             <div class="news-card fade-in">
                 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid032ywtqbFthqsEs9Z7oWowgBZphNeD5x117muJdDtypLHNbPxpqCv718xPA195zKPjl%26id%3D61587116406078&show_text=true&width=500" 
-                        width="100%" 
-                        height="250" 
+                        width="100%" height="250" 
                         style="border:none;overflow:hidden;border-radius:8px;" 
-                        scrolling="no" 
-                        frameborder="0" 
-                        allowfullscreen="true" 
+                        scrolling="no" frameborder="0" allowfullscreen="true" 
                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                 </iframe>
             </div>
         </div>
-
-        <!-- Call to Action -->
         <div style="text-align: center; margin-top: 3rem;">
             <div class="decorative-line"></div>
             <h3 style="color: var(--deep-red); margin: 2rem 0 1.5rem; font-size: 1.5rem;">Theo Dõi Chúng Tôi Trên Facebook</h3>
-            <a href="https://www.facebook.com/profile.php?id=61587116406078" 
-               target="_blank" 
-               class="btn"
-               style="display: inline-block; margin-top: 1rem;">
+            <a href="https://www.facebook.com/profile.php?id=61587116406078" target="_blank" class="btn" style="display: inline-block; margin-top: 1rem;">
                 Xem Tất Cả Bài Viết
             </a>
         </div>
@@ -883,28 +1115,61 @@
         <p>Gìn giữ và phát huy nghệ thuật Chèo truyền thống Việt Nam</p>
     </footer>
 
-    <!-- Facebook SDK for JavaScript -->
+    <!-- Facebook SDK -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" 
             src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0" 
             nonce="RandomNonce">
     </script>
 
-    <!-- Background Admin Panel -->
-    <div class="bg-admin" id="bgAdmin">
-        <h4>Thay Đổi Background</h4>
-        <input type="text" id="bgInput" placeholder="Nhập URL hình ảnh...">
-        <button onclick="changeBackground()">Áp Dụng</button>
-    </div>
-
     <script>
-        // Hide hero button on scroll - stays visible longer
-        window.addEventListener('scroll', function() {
+        // =============================================
+        // EXPANDABLE CHARACTER CARDS
+        // =============================================
+        const cards = document.querySelectorAll('.character-card');
+        const details = document.querySelectorAll('.character-detail');
+        const closeButtons = document.querySelectorAll('.close-detail');
+
+        function closeAll() {
+            cards.forEach(c => c.classList.remove('active'));
+            details.forEach(d => d.classList.remove('visible'));
+        }
+
+        cards.forEach(card => {
+            card.addEventListener('click', function () {
+                const targetId = this.dataset.target;
+                const targetDetail = document.getElementById(targetId);
+                const isAlreadyOpen = this.classList.contains('active');
+
+                closeAll();
+
+                if (!isAlreadyOpen) {
+                    this.classList.add('active');
+                    targetDetail.classList.add('visible');
+
+                    // Smooth scroll so the detail panel comes into view
+                    setTimeout(() => {
+                        const navHeight = document.querySelector('nav').offsetHeight;
+                        const top = targetDetail.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }, 50);
+                }
+            });
+        });
+
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                closeAll();
+            });
+        });
+
+        // =============================================
+        // HERO BUTTON HIDE ON SCROLL
+        // =============================================
+        window.addEventListener('scroll', function () {
             const heroBtn = document.querySelector('.hero .btn');
-            const scrolled = window.scrollY;
-            
-            // Make button invisible after scrolling 400px (was 50px)
-            if (scrolled > 400) {
+            if (window.scrollY > 400) {
                 heroBtn.style.opacity = '0';
                 heroBtn.style.visibility = 'hidden';
             } else {
@@ -913,61 +1178,30 @@
             }
         });
 
-        // Smooth scrolling
+        // =============================================
+        // SMOOTH SCROLLING
+        // =============================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = target.offsetTop - navHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: target.offsetTop - navHeight, behavior: 'smooth' });
                 }
             });
         });
 
-        // Toggle background admin panel with Alt+B
-        document.addEventListener('keydown', function(e) {
-            if (e.altKey && e.key === 'b') {
-                document.getElementById('bgAdmin').classList.toggle('active');
-            }
-        });
-
-        // Change background function
-        function changeBackground() {
-            const url = document.getElementById('bgInput').value;
-            if (url) {
-                const hero = document.querySelector('.hero');
-                hero.style.background = `linear-gradient(rgba(62, 39, 35, 0.7), rgba(62, 39, 35, 0.85)), url('${url}')`;
-                hero.style.backgroundSize = 'cover';
-                hero.style.backgroundPosition = 'center';
-                hero.style.backgroundAttachment = 'fixed';
-                alert('Background đã được cập nhật!');
-            }
-        }
-
-        // Scroll animation observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
+        // =============================================
+        // SCROLL FADE-IN ANIMATION
+        // =============================================
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
-
-        // Parallax effect for hero (removed to fix scrolling issue)
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
